@@ -1,0 +1,142 @@
+<html>
+
+<head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/hover-min.css">
+</head>
+
+<body>
+    <div class="main">
+        <!-- Settings floating button -->
+        <a id="settings-button" href="#" class="float"> &#9881;</a>
+        <div class="label-container">
+        <div class="label-text">Settings</div>
+            <i class="fa fa-play label-arrow"></i>
+        </div>
+        <!-- Settings Popup Panel -->
+        <div id="settings" class="popup">
+            <div id="settings-content" class="popup-content popout" >
+                <!-- Header of Popup -->
+                <div class="popup-header">
+                    <span class="popup-close-button" id="settings-close">&times;</span>
+                    <h1>Animation Settings</h1>
+                    <hr>
+                </div>
+                <!-- Body of Popup (form) -->
+                <script src="./libraries/jscolor.js"></script>
+                <div class="popup-form">
+                    <h4>Animation Step Speed (ms)</h4>
+                    <input id="settings-speed-input" type="text" value="800">
+                    <h4>State Element Radius</h4>
+                    <input id="settings-state-radius" type="text" value="100">
+                    <h4>State Element Color</h4>
+                    <input class="jscolor" id="settings-state-element-color" value="ab2567">
+                    <h4>State Text Color</h4>
+                    <input class="jscolor" id="settings-state-text-color" value="ab2567">
+                    <h4>State Text Size</h4>
+                    <input id="settings-state-text-size" type="text" value="800">
+                    <h4>Transition Element Color</h4>
+                    <input class="jscolor" id="settings-transition-element-color" value="ab2567">
+                    <h4>Transition Text Color</h4>
+                    <input class="jscolor" id="settings-transition-text-color" value="ab2567">
+                    <h4>Transition Text Size</h4>
+                    <input id="settings-transition-text-size" type="text" value="800">
+                    <h4>Transition Thickness</h4>
+                    <input id="settings-transition-thickness" type="text" value="15">
+                    <hr>
+                    <button id="settings-save" class="hvr-underline-from-center pure-button" style="width: 100%;">Save Settings</button>
+                </div>
+            </div>
+        </div>
+        <!-- P5.js Canvas -->
+        <div class="canvas" id="canvas"></div>
+        <!-- Canvas Controls -->
+        <div class="controls" style="display: flex;">
+            <button class="hvr-underline-from-center pure-button button-generate" id="generate" style="flex-grow: 1; text-align: center;">Generate Automaton</button>
+            <div style="flex-grow: 1; text-align: center;">
+                <input id="accept-input" class="accept-input input-disable" type="text" value="< Type Input String Here >">
+                <button class="hvr-underline-from-center pure-button button-accept pure-button-disabled" id="accept" style="width:100%; text-align: center;">Run Accept Function</button>
+            </div>
+        </div>
+        <!-- FSM Generator (popup) -->
+        <div id="generator" class="popup">
+            <!-- popup content -->
+            <div id="generator-content" class="popup-content popout">
+                <!-- Header of Popup -->
+                <div class="popup-header">
+                    <span class="popup-close-button" id="generator-close">&times;</span>
+                    <h1>FSM Generator</h1>
+                    <hr>
+                </div>
+                <!-- Body of Popup (form) -->
+                <div class="popup-form">
+                    <h4>FSM Type</h4>
+                    <select id="generator-fsm-select">
+                        <option value="DFA">DFA</option>
+                        <option value="NFA">NFA</option>
+                        <option value="E_NFA">E-NFA</option>
+                    </select>
+                    <h4>Alphabet</h4>
+                    <input id="generator-alphabet-input" type="text" value="1,0">
+                    <h4>States</h4>
+                    <input id="generator-states-input" type="text" value="A,B,C">
+                    <h4>Starting State</h4>
+                    <input id="generator-startingstate-input" type="text" value="A">
+                    <h4>Accepting State</h4>
+                    <input id="generator-acceptingstate-input" type="text" value="C">
+                    <div id="generator-transition-container">
+                        <h3>Transition</h3>
+                        <hr>
+                        <div class="fsm-transition-element" id="generator-transition-element" style="width:100%"></div>
+                        <hr>
+                    </div>
+                    <div>
+                        <button id="generator-save" class="hvr-underline-from-center pure-button" style="width: 49.5%;">Save</button>
+                        <button id="generator-load" class="hvr-underline-from-center pure-button" style="width: 49.5%;">Load</button>
+                    </div>
+                    <hr>
+                    <button id="generator-generate" class="hvr-underline-from-center pure-button" style="width: 100%;">Generate</button>
+                </div>
+            </div>
+        </div>
+        <!-- Load Popup Panel -->
+        <div id="loadfsm" class="popup">
+            <div id="loadfsm-content" class="popup-content popout" >
+                <!-- Header of Popup -->
+                <div class="popup-header">
+                    <span class="popup-close-button" id="loadfsm-close">&times;</span>
+                    <h1>Load FSM</h1>
+                    <hr>
+                </div>
+                <!-- Body of Popup (form) -->
+                <div class="popup-form">
+                    <h4>Select Stored Object</h4>
+                    <select id="loadfsm-select"></select>  
+                    <hr>
+                    <div>
+                        <button id="loadfsm-clearcache" class="hvr-underline-from-center pure-button" style="width: 49.5%;">Clear Cache</button>
+                        <button id="loadfsm-randomfsm" class="hvr-underline-from-center pure-button" style="width: 49.5%;">Load Random FSM</button>
+                    </div>
+                    <hr>
+                    <button id="loadfsm-load" class="hvr-underline-from-center pure-button" style="width: 100%;">Load To Generator</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Load Post Initialisation Scripts -->
+<script src="./libraries/p5.js"></script>
+<script src="./js/scripts/extrafunctions.js"></script>
+<script src="./js/classes/anim/AnimationElements.js"></script>
+<script src="./js/classes/anim/MousePressFun.js"></script>
+<script src="./js/classes/FiniteStateMachine.js"></script>
+<script src="./js/classes/fsms/DFA.js"></script>
+<script src="./js/classes/fsms/NFA.js"></script>
+<script src="./js/classes/fsms/E-NFA.js"></script>
+<script src="./js/scripts/sketch.js"></script>
+<script src="./js/scripts/index.js"></script>
+
+</html>

@@ -1,0 +1,221 @@
+/******************
+* Load Assets
+******************/
+@font-face {
+    font-family: 'ButtonFont';
+    src: url('../assets/fonts/Montserrat-Bold.otf');
+}
+
+@font-face {
+    font-family: 'InputFont';
+    src: url('../assets/fonts/Montserrat-Light.otf');
+}
+
+h4 {
+    margin-bottom: 1%;
+}
+
+/******************
+* Main Page CSS
+******************/
+
+.main {
+    height: 100%;
+    overflow: auto;
+}
+
+.canvas {
+    border-color: white;
+    border-width: 4px;
+    height: 90%;
+}
+
+.controls {
+    height: 10%;
+}
+
+.pure-button.button-accept {
+    color: white;
+    font-family: "ButtonFont";
+    font-size: 2vh;
+    height: 65%;
+    background: rgb(108, 224, 65);
+    border-style: solid;
+    border-color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pure-button.button-generate {
+    color: white;
+    font-family: "ButtonFont";
+    font-size: 2.5vh;
+    background: rgb(30, 30, 30);
+    border-style: solid;
+    border-color: white;
+}
+
+.accept-input {
+    width: 100%;
+    height: 35%;
+    background: rgb(30, 30, 30);
+    color: white;
+    font-family: "InputFont";
+    font-size: 1.8vh;
+    text-align: center;
+    border-style: solid;
+    border-color: white;
+}
+
+.input-disable {
+    pointer-events: none;
+    border: 1px solid grey;
+    background-color: lightgrey;
+    background: grey;
+}
+
+/* floating button */
+.label-container {
+    position: fixed;
+    top: 5.5%;
+    right: 6.5%;
+    display: table;
+    visibility: hidden;
+}
+
+.label-text {
+    color: #FFF;
+    background: rgba(51, 51, 51, 0.5);
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.label-arrow {
+    display: table-cell;
+    vertical-align: middle;
+    color: #333;
+    opacity: 0.5;
+}
+
+.float {
+    position: fixed;
+    width: 3.5%;
+    height: 6.7%;
+    top: 40px;
+    right: 40px;
+    background-color: rgb(108, 25, 141);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    vertical-align: 50%;
+    font-size: 4vh;
+    box-shadow: 2px 2px 8px rgb(0, 0, 0);
+}
+
+.my-float {
+    font-size: 24px;
+    margin-top: 18px;
+}
+
+a.float+div.label-container {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease;
+}
+
+a.float:hover+div.label-container {
+    visibility: visible;
+    opacity: 1;
+}
+
+/******************
+* Generator CSS
+******************/
+
+/* pop out class */
+.popout {
+    animation: popout 1s ease;
+    -webkit-animation: popout .8s ease;
+}
+
+@keyframes popout {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+@-webkit-keyframes popout {
+    from {
+        -webkit-transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+/* slide out class */
+.slide-out {
+    transform: translateY(-200vh) rotate(0deg);
+    transition: all 1.25s ease;
+}
+
+/* The popup (background) */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* popup Content/Box */
+.popup-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+/* The Close Button */
+.popup-close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.popup-close-button:hover,
+.popup-close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.transition-table-row {
+    display: block;
+    color: white;
+    background: rgb(50, 50, 50);
+}
+
+.transition-table-row-element {}
+
+.transition-table-row-element-input {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    width: 96%;
+    color: black;
+}
