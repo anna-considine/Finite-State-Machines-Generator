@@ -124,7 +124,6 @@ closeSettingsButton.onclick = async function () {
  *      Generator Logic
 ******************************/
 
-// Biggest mess ever created BUT HEY IT WORKS FAM
 let transition = {}; // { '1' = { 'a' : [el1, el2], ... } }
 let updatetransitionTable = function () {
     let alphabet = [];
@@ -160,7 +159,7 @@ let updatetransitionTable = function () {
         label.innerHTML        = `Symbol: '${symbol}'`;
         label.style.margin     = 0;
         label.style.marginLeft = "2%";
-       
+
         let inputElement = document.createElement("input");
         inputElement.classList.add('transition-table-row-element-input');
 
@@ -176,14 +175,14 @@ let updatetransitionTable = function () {
 
         let div = document.createElement("div");
         div.classList.add('transition-table-row');
-        
+
         let label              = document.createElement("h3");
         label.innerHTML        = "Transition function for " + state;
         label.style.textAlign  = "center";
         label.style.paddingTop = "1.5%";
 
         div.appendChild(label);
-        
+
         for (let symbol of alphabet) {
             transition[state][symbol] = createStateTransitionElement(div, state, symbol);
         }
@@ -197,15 +196,15 @@ let updatetransitionTable = function () {
 
     console.log(transition);
 }
- 
+
 closeGeneratorButton.onclick = async function () {
     generatorContent.classList.add("slide-out");
-    
-    await setTimeout(() => { 
-        generator.style.display = "none";  
+
+    await setTimeout(() => {
+        generator.style.display = "none";
         generatorContent.classList.remove("slide-out")
     }, 600);
-    
+
     if (fsm) return; // so that we can continue to test input on current DFA
     acceptButton.className = "hvr-underline-from-center pure-button button-accept pure-button-disabled";
     acceptInput.className  = "accept-input input-disable";
@@ -260,7 +259,7 @@ generateFSMButton.onclick = function () {
 
     if (!statesArray.includes(startingStateSymbol))
         return alert("Starting state is invalid!");
-    
+
     // accepting states
     let acceptingStateString = acceptingStateInput.value.trim();
 
@@ -288,10 +287,10 @@ generateFSMButton.onclick = function () {
             let inputElement = transitionElement[transitionSymbol];
             if (inputElement.value === "")
                 continue;
-            
+
             let transitionArray = inputElement.value.split(',');
 
-            if (transitionArray.length > 1 && fsmType === "DFA") 
+            if (transitionArray.length > 1 && fsmType === "DFA")
                 return alert(`Found a non-deterministic transition in a DFA!\n(State Symbol: ${stateSymbol} transition Symbol: ${transitionSymbol})`);
 
             if (!transitionArray.every(s => statesArray.includes(s)))
@@ -322,11 +321,11 @@ saveButton.onclick = function () {
     let saveID = prompt("Enter an ID to save the FSM object as:", "Ozy makes my sweat");
     if (saveID === null )
         return;
-    
+
     let shallowCloneFSM        = { ...fsm };
-    shallowCloneFSM.GUIElement = null;  
+    shallowCloneFSM.GUIElement = null;
     shallowCloneFSM.CLASS_NAME = fsm.constructor.name;
-    
+
     localStorage[FSM_PREFIX_KEY+saveID] = JSON.stringify(shallowCloneFSM);
     alert(`Saved FSM object as '${saveID}'. You may now load it via the load function.`);
 }
@@ -365,7 +364,7 @@ loadfsmLoadButton.onclick = function () {
 
     if (storedFSMObject === null)
         return alert("Invalid stored FSM object!");
-    
+
     console.log(localStorage[FSM_PREFIX_KEY+key]);
     console.log("//////////////////////")
     console.log(storedFSMObject)
@@ -400,10 +399,10 @@ loadfsmLoadButton.onclick = function () {
         if (state.accepting)
             acceptinginput.push(state.symbol);
     }
-    
+
     acceptingStateInput.value = acceptinginput + "";
 
-    // update before we add stuff! 
+    // update before we add stuff!
     updatetransitionTable();
 
     for (let stateSymbol in transition) {
@@ -446,10 +445,10 @@ let LetterGenerator = function () {
             let offset = n % difference;
 
             let letter = String.fromCharCode(ASCII_LETTER_LOWER + offset);
-            
+
             // suffix
             if (n >= difference)
-                letter = letter + (n - difference); 
+                letter = letter + (n - difference);
 
             this.letters.push(letter);
             return letter;
@@ -476,13 +475,13 @@ loadfsmRandomFSMButton.onclick = function () {
     let alphabetSize = randomInteger(1, aaUpperBound);
     let letterGen    = LetterGenerator();
     let randomAlphabetArray = [];
-    
+
     for (let i = 0; i < alphabetSize; i++) {
         let symbol = letterGen.generate();
         randomAlphabetArray.push(symbol);
     }
 
-    alphabetInput.value = randomAlphabetArray + ""; 
+    alphabetInput.value = randomAlphabetArray + "";
 
     let saUpperBound = prompt("Enter upper bound for random state array generator:");
     if (isNaN(saUpperBound))
@@ -506,7 +505,7 @@ loadfsmRandomFSMButton.onclick = function () {
 
     let randomIndex2          = randomInteger(0, n);
     acceptingStateInput.value = randomStateArray[randomIndex2];
-    
+
     loadfsm.style.display = "none";
 }
 

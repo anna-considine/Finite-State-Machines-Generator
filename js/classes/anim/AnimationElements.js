@@ -19,7 +19,6 @@ class StateElementGUI {
 
     /* Check if mouse is over */
     isMouseOver() {
-        // im lazy
         let env = this.env;
 
         return env.dist(env.mouseX, env.mouseY, this.pos.x, this.pos.y) <= this.radius / 2;
@@ -27,7 +26,6 @@ class StateElementGUI {
 
     /* Called when mouse is released */
     mouseReleased(mx, my) {
-        // im lazy
         let env = this.env;
 
         this.isDragging  = false;
@@ -36,7 +34,6 @@ class StateElementGUI {
 
     /* Called when mouse is pressed! */
     mousePressed(mx, my) {
-        // im lazy
         let env = this.env;
 
         if (this.isMouseOver()) {
@@ -46,7 +43,6 @@ class StateElementGUI {
     }
 
     draw() {
-        // im lazy
         let env = this.env;
 
         env.stroke(127, 63, 120);
@@ -117,8 +113,8 @@ class TransistionElementGUI {
 
     isMouseOver() {
         // Over complicate the way to calculate if you are hovering a transistion line
-        // HIGH SCHOOL MATHS TO THE EXTREME BOYS - IT WORKS BTW
-        let env  = this.env;
+        const env  = this.env;
+
         let sf_x = this.stateFrom.pos.x + this.offset.x;
         let sf_y = this.stateFrom.pos.y + this.offset.y;
         let st_x = this.stateTo.pos.x   + this.offset.x;
@@ -134,26 +130,16 @@ class TransistionElementGUI {
 
     /* Called when mouse is released */
     mouseReleased(mx, my) {
-        /*// im lazy
-        let env = this.env;
-
-        this.isDragging = false;
-        elementFocusLock    = null;*/
+        // Currently no use for it but could be added!
     }
 
     /* Called when mouse is pressed! */
     mousePressed(mx, my) {
-        /*// im lazy
-        let env = this.env;
-        if (this.isMouseOver()) {
-            this.isDragging = true;
-            elementFocusLock= this;
-        }*/
+       // Currently no use for it but could be added!
     }
 
     draw() {
-        // im lazy
-        let env = this.env;
+        const env = this.env;
 
         // Calculate offset :)
         let coord_offset = 15;

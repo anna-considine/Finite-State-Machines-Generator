@@ -11,7 +11,7 @@ class NFA extends FiniteStateMachine {
         let n = string.length;
         let S = [this.starting];
         let C = [];
-        
+
         for (let i = 0; i < n; i++)
             C[i] = [];
 
@@ -20,7 +20,7 @@ class NFA extends FiniteStateMachine {
             console.log(inputSymbol, C, S);
             if (!this.isValidSymbol(inputSymbol))
                 return new AcceptanceResult(string, false, "An invalid symbol was found in the input! (does not belong in alpahabet)");
-            
+
             for (let currentStateSymbol of S) {
                 let currentState              = this.getState(currentStateSymbol);
                 let reachableStatesWithSymbol = currentState.transition[inputSymbol];
@@ -36,7 +36,7 @@ class NFA extends FiniteStateMachine {
             if (S.length <= 0)
                 return new AcceptanceResult(string, false, "NFA has no where to go!");
         }
-        
+
         for (let stateSymbol of C[n-1]) {
             let state = this.getState(stateSymbol);
             if (state.accepting)
@@ -47,6 +47,7 @@ class NFA extends FiniteStateMachine {
     }
 
     convertToDFA() {
+        // TODO
         return new DFA();
     }
 }

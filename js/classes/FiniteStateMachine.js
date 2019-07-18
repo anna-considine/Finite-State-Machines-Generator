@@ -19,7 +19,7 @@ class FiniteStateMachine {
             if (this.states.hasOwnProperty(symbol))
                 this.states[symbol].symbol = symbol;
 
-        // Setup quick look-up of alphabet 
+        // Setup quick look-up of alphabet
         for (let symbol of alphabet)
             this.alphabet[symbol] = symbol;
     }
@@ -92,7 +92,7 @@ class FiniteStateMachine {
                 let stateGUI   = new StateElementGUI(state.symbol, state.accepting, isStarting, {
                     x: env.random(offset, env.width - offset),
                     y: env.random(offset, env.height - offset),
-                }, i, env); 
+                }, i, env);
 
                 this.GUIElement.states[stateSymbol] = stateGUI;
                 i++;
@@ -134,7 +134,9 @@ class FiniteStateMachine {
     }
 
     draw() {
-        let env                = this.GUIElement.env;
+        // easy lookup
+        const env = this.GUIElement.env;
+
         let stateElements      = this.GUIElement.states;
         let transitionElements = this.GUIElement.transitions;
 
