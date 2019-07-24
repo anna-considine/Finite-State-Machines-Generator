@@ -8,6 +8,11 @@ A front-end application that generates, displays and animates theoretical Finite
 - Configurable canvas.
 - Storage of past FSM objects.
 
+## Try the application
+<a href="https://anna-considine.github.io/Finite-State-Machines-Generator/">
+    <img src="https://mix.com.fj/wp-content/uploads/2017/10/download-17.jpg">
+</a>
+
 ## Media
 ![](assets/media/r1.gif)
 ![](assets/media/r2.gif)
