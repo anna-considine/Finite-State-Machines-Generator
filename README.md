@@ -10,7 +10,7 @@ A front-end application that generates, displays and animates theoretical Finite
 
 ## Try the application
 <a href="https://anna-considine.github.io/Finite-State-Machines-Generator/">
-    <img src="https://mix.com.fj/wp-content/uploads/2017/10/download-17.jpg">
+    <img src="./assets/media/Tryme.png">
 </a>
 
 ## Media
